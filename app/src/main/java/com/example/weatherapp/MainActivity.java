@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.app.SearchManager;
@@ -36,8 +35,6 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -120,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView windSpeedText;
     private TextView windDegreeText;
     private  Button ceklokasi;
-    private SwipeRefreshLayout swipeRefreshLayout;
+
     private Toolbar toolbar;
     private ListView listView;
 
@@ -173,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         weatherDescText = findViewById(R.id.weather_desc_text_view);
         listView = findViewById(R.id.list_view);
         forecastButton = findViewById(R.id.forecast_button);
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+
         parametersTable.setVisibility(View.INVISIBLE);
         weatherTable.setVisibility(View.INVISIBLE);
         forecastButton.setVisibility(View.INVISIBLE);
@@ -294,13 +291,6 @@ public class MainActivity extends AppCompatActivity {
         if (!getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getString(LAST_JSON, "").isEmpty()) {
             retrieveData.execute();
         }
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
     }
 
     public static boolean hasPermissions(Context context, String... permissions) {
